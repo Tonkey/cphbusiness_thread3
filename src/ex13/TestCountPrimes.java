@@ -7,13 +7,25 @@ package ex13;
 // (Much simplified from CountprimesMany.java)
 // sestoft@itu.dk * 2014-08-27
 
+/**
+ * the average time of count sequential is 5,5 milliseconds.
+ * the average time of count with 10 threads is 1,4 milliseconds, so it's way faster.
+ * removing sync from the increment method will reduce the data consistency as it will allow the two threads
+ * to alter the same variable at the same time resulting in incorrect values. basically no it will not give the correct value.
+ * 
+ * @author Nicklas Molving
+ */
+
 public class TestCountPrimes {
   public static void main(String[] args) {
     final int range = 10_000_000;
-    System.out.printf("Sequential result: %10d%n%n", countSequential(range));
-    // System.out.printf("Parallel2  result: %10d%n%n", countParallel2(range/2));
+    long startTime = System.nanoTime();
+//    System.out.printf("Sequential result: %10d%n%n", countSequential(range));
+//     System.out.printf("Parallel2  result: %10d%n%n", countParallel2(range/2));
     // System.out.printf("Parallel4  result: %10d%n%n", countParallelN(range, 4));
-    // System.out.printf("Parallel10 result: %10d%n%n", countParallelN(range, 10));
+     System.out.printf("Parallel10 result: %10d%n%n", countParallelN(range, 10));
+    long endTime = System.nanoTime();
+      System.out.println("The method took: " + (endTime - startTime)/1000000 + " milliseconds");
   }
 
   private static boolean isPrime(int n) {

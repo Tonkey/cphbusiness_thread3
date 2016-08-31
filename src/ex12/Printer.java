@@ -1,12 +1,18 @@
 package ex12;
 
+import java.util.concurrent.locks.Lock;
+
 /**
  *
  * @author sofus
  */
 class Printer {
 
+    
     public static void print() {
+        
+        
+        synchronized(Printer.class){    
         System.out.print("-");
         try {
             Thread.sleep(50);
@@ -14,4 +20,9 @@ class Printer {
         }
         System.out.print("|");
         }
+        }
+        
+
 }
+
+

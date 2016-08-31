@@ -3,6 +3,12 @@ package ex10;
 // For week 2
 // sestoft@itu.dk * 2014-08-25
 
+/**
+ * both methods need to be synchronized in order to secure that the threads do
+ * not access the methods at the same time causing loss of data consistency!.
+ */
+
+
 import java.io.IOException;
 
 public class TestMutableInteger {
@@ -27,12 +33,13 @@ public class TestMutableInteger {
 // "synchronized" to ensure visibility of writes across threads:
 class MutableInteger {
   private int value = 0;   
+  
   public synchronized void set(int value) {
     this.value = value;
   }
   
   
-  public int get() { 
+  public synchronized int get() { 
     return value; 
   }
 }
